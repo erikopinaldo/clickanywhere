@@ -8,4 +8,6 @@ You can find the game here: https://clickanywhere.netlify.app/
 
 * Make site responsive
 * Is there a way to better hide the solution from those inspecting the web page?
+* Instructions modal
+* Save progress?
 * Styling?
