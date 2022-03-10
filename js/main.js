@@ -12,13 +12,13 @@ document.querySelector('span').addEventListener('click', playAgain)
 
 function checkWrong() {
     const replies = [
-      "ur not even good",
+      "not quite",
       "really?",
       "no not there",
       "getting close... jk",
       "git gud",
       "what're u trying",
-      "hello??",
+      "hello?",
       "no",
       "imagine though?",
       "💀😂"
@@ -39,7 +39,7 @@ function checkThought() {
 
 function checkAnswer() {
     let modal = document.getElementById("myModal");
-    document.querySelector('.answer').innerText = "ur cracked"
+    document.querySelector('.answer').innerText = "ur sicccc"
     document.querySelector('#results').innerText = "oKKKK"
     total = total + 1
     document.querySelector('#clickCounter').innerText = total
