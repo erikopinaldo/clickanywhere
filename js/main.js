@@ -13,12 +13,12 @@ document.querySelector('span').addEventListener('click', playAgain)
 function checkWrong() {
     const replies = [
       "not quite",
-      "really?",
+      "try somewhere else",
       "no not there",
       "getting close... jk",
       "git gud",
       "what're u trying",
-      "hello?",
+      "ur better than this",
       "no",
       "imagine though?",
       "💀😂"
