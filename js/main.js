@@ -1,5 +1,5 @@
 let total = 0 //Click counter
-let randomAnswer = Math.floor(Math.random() * 199) //Random number not used yet
+let randomAnswer = Math.floor(Math.random() * 200) //Random number not used yet
 const sectionList = document.querySelectorAll('section')
 
 sectionList[randomAnswer].classList.replace('wrong', 'answer')
