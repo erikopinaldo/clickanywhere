@@ -1,6 +1,7 @@
-let total = 0
-let randomAnswer = Math.floor(Math.random() * 258)
+let total = 0 //Click counter
+let randomAnswer = Math.floor(Math.random() * 258) //Random number not used yet
 const sectionList = document.querySelectorAll('section')
+
 sectionList[randomAnswer].classList.replace('wrong', 'answer')
 
 document.querySelectorAll('.wrong').forEach(item =>
@@ -8,47 +9,60 @@ document.querySelectorAll('.wrong').forEach(item =>
     )
 document.querySelector('#fakeClick').addEventListener('click', checkThought)
 document.querySelector('.answer').addEventListener('click', checkAnswer)
-document.querySelector('span').addEventListener('click', playAgain)
+document.querySelector('button').addEventListener('click', playAgain)
 
+//Response to clicks.
+
+let results = document.querySelector('#results')
+let answer = document.querySelector('.answer')
+let clickCounter = document.querySelector('.clickCounter')
+let clickCounterTwo = document.querySelector('.clickCounterTwo')
+
+//Response to normal wrong clicks.
 function checkWrong() {
     const replies = [
       "not quite",
-      "try somewhere else",
+      "really?",
       "no not there",
       "getting close... jk",
       "git gud",
       "what're u trying",
-      "ur better than this",
+      "hello?",
       "no",
       "imagine though?",
       "💀😂"
     ]
     let randomNumber = Math.floor(Math.random() * replies.length);
   
-    document.querySelector('#results').innerText = replies[randomNumber]
-    document.querySelector('.answer').innerText = ""
+    results.innerText = replies[randomNumber]
+    answer.innerText = ""
     total = total + 1
-    document.querySelector('#clickCounter').innerText = total
+    clickCounter.innerText = total
+    clickCounterTwo.innerText = total
 }
 
 function checkThought() {
-    document.querySelector('#results').innerText = "u really thought"
-    document.querySelector('.answer').innerText = ""
-    document.querySelector('#clickCounter').innerText = total
+    results.innerText = "u really thought"
+    answer.innerText = ""
+    clickCounter.innerText = total
+    clickCounterTwo.innerText = total
 }
 
 function checkAnswer() {
     let modal = document.getElementById("myModal");
-    document.querySelector('.answer').innerText = "ur sicccc"
-    document.querySelector('#results').innerText = "oKKKK"
+    results.innerText = "oKKKK"
+    answer.innerText = "ur sicccc"
     total = total + 1
-    document.querySelector('#clickCounter').innerText = total
-    modal.style.display = "block"
+    clickCounter.innerText = total
+    document.querySelector('#clickLabel').classList.add('hidden')
+    clickCounterTwo.classList.add('hidden')
+    modal.showModal()
+    
 }
 
 function playAgain() {
   let modal = document.getElementById("myModal");
   modal.style.display = "none"
-  document.querySelector('.answer').innerText = ""
+  answer.innerText = ""
   window.location = window.location
 }
