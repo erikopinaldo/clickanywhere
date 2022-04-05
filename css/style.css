@@ -31,7 +31,7 @@
 /* ADDITIONAL STYLES
 /*******************************************/
 
-.modal {
+/* .modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -41,16 +41,20 @@
   height: 100vh;
   overflow: auto;
   background: rgba(0,0,0,0.4);
-}
+} */
 
-.modal-content {
+/* .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto; /* 15% from the top and centered 
   padding: 20px;
   border: 1px solid #888;
   width: 5%;
   text-align: center;
-}
+} */
+
+/* body * {
+  border: 2px solid black;
+} */
 
 .close:hover, .close:focus {
   cursor: pointer;
@@ -71,11 +75,39 @@ section {
   text-align: center;
 }
 
-#fakeClick h1 {
-  font-size: 30px;
-  margin-bottom: 10px;
+@media (min-width: 1969px) {
+  #fakeClick h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 1596px) and (max-width: 1968px) {
+  #fakeClick h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 }
 
 h2, h3 {
   font-size: 20px;
+}
+
+#myModal {
+  text-align: center;
+  border: 0;
+  box-shadow: 0 0 1em rgb(0 0 0 / .3);
+}
+
+.close {
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: grey;
+}
+
+.hidden {
+  display: none;
 }
