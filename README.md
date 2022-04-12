@@ -6,8 +6,7 @@ You can find the game here: https://clickanywhere.netlify.app/
 
 ### To do:
 
-* Make site responsive (research flex-grow as an option)
-* Is there a way to better hide the solution from those inspecting the web page?
+* Make site responsive (research display grid as an option)
 * Instructions modal
 * Save progress?
 * Styling?
