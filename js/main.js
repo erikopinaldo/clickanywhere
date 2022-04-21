@@ -4,7 +4,6 @@ if (!localStorage.getItem('localClickTotal')) {
   localStorage.setItem('localClickTotal', JSON.stringify([]))
 }
 
-
 // Randomizer
 let total = 0 //Click counter
 let randomAnswer = Math.floor(Math.random() * 200) //Random number not used yet
@@ -55,6 +54,10 @@ function checkAnswer() {
     total = total + 1
     document.querySelector('#clickCounter').innerText = total
     modal.showModal()
+
+    let localClickTotal = JSON.parse(localStorage.getItem('localClickTotal'))
+    localClickTotal.push(total)
+    localStorage.setItem('localClickTotal', JSON.stringify(localClickTotal))
 }
 
 function playAgain() {
