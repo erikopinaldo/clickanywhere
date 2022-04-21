@@ -52,9 +52,9 @@
   text-align: center;
 } */
 
-.modal-content {
-  text-align: center;
-}
+/* body * {
+  border: 2px solid black;
+} */
 
 .close:hover, .close:focus {
   cursor: pointer;
@@ -75,11 +75,39 @@ section {
   text-align: center;
 }
 
-#fakeClick h1 {
-  font-size: 30px;
-  margin-bottom: 10px;
+@media (min-width: 1969px) {
+  #fakeClick h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 1596px) and (max-width: 1968px) {
+  #fakeClick h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 }
 
 h2, h3 {
   font-size: 20px;
+}
+
+#myModal {
+  text-align: center;
+  border: 0;
+  box-shadow: 0 0 1em rgb(0 0 0 / .3);
+}
+
+.close {
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: grey;
+}
+
+.hidden {
+  display: none;
 }
