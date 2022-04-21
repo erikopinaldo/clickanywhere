@@ -17,7 +17,7 @@ document.querySelectorAll('.wrong').forEach(item =>
     )
 document.querySelector('#fakeClick').addEventListener('click', checkThought)
 document.querySelector('.answer').addEventListener('click', checkAnswer)
-document.querySelector('span').addEventListener('click', playAgain)
+document.querySelector('.close').addEventListener('click', playAgain)
 
 // Game logic
 function checkWrong() {
@@ -58,6 +58,10 @@ function checkAnswer() {
     let localClickTotal = JSON.parse(localStorage.getItem('localClickTotal'))
     localClickTotal.push(total)
     localStorage.setItem('localClickTotal', JSON.stringify(localClickTotal))
+
+    let scoreArr = JSON.parse(localStorage.getItem('localClickTotal'))
+    let lowestScore = Math.min(...scoreArr)
+    document.querySelector('.score').innerText = `your lowest number of clicks to win: ${lowestScore}`
 }
 
 function playAgain() {

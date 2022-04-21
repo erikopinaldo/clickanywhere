@@ -52,6 +52,10 @@
   text-align: center;
 } */
 
+.modal-content {
+  text-align: center;
+}
+
 .close:hover, .close:focus {
   cursor: pointer;
 }
