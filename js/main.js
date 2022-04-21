@@ -1,4 +1,4 @@
-// // New state score saved to localStorage
+// New state score saved to localStorage
 
 if (!localStorage.getItem('localClickTotal')) {
   localStorage.setItem('localClickTotal', JSON.stringify([]))
@@ -17,9 +17,16 @@ document.querySelectorAll('.wrong').forEach(item =>
     )
 document.querySelector('#fakeClick').addEventListener('click', checkThought)
 document.querySelector('.answer').addEventListener('click', checkAnswer)
-document.querySelector('.close').addEventListener('click', playAgain)
+document.querySelector('button').addEventListener('click', playAgain)
 
-// Game logic
+//Response to clicks.
+
+let results = document.querySelector('#results')
+let answer = document.querySelector('.answer')
+let clickCounter = document.querySelector('.clickCounter')
+let clickCounterTwo = document.querySelector('.clickCounterTwo')
+
+//Response to normal wrong clicks.
 function checkWrong() {
     const replies = [
       "not quite",
@@ -35,38 +42,42 @@ function checkWrong() {
     ]
     let randomNumber = Math.floor(Math.random() * replies.length);
   
-    document.querySelector('#results').innerText = replies[randomNumber]
-    document.querySelector('.answer').innerText = ""
+    results.innerText = replies[randomNumber]
+    answer.innerText = ""
     total = total + 1
-    document.querySelector('#clickCounter').innerText = total
+    clickCounter.innerText = total
+    clickCounterTwo.innerText = total
 }
 
 function checkThought() {
-    document.querySelector('#results').innerText = "u really thought"
-    document.querySelector('.answer').innerText = ""
-    document.querySelector('#clickCounter').innerText = total
+    results.innerText = "u really thought"
+    answer.innerText = ""
+    clickCounter.innerText = total
+    clickCounterTwo.innerText = total
 }
 
 function checkAnswer() {
     let modal = document.getElementById("myModal");
-    document.querySelector('#results').innerText = "oKKKK"
-    document.querySelector('.answer').innerText = "ur sicccc"
+    results.innerText = "oKKKK"
+    answer.innerText = "ur sicccc"
     total = total + 1
-    document.querySelector('#clickCounter').innerText = total
+    clickCounter.innerText = total
+    document.querySelector('#clickLabel').classList.add('hidden')
+    clickCounterTwo.classList.add('hidden')
     modal.showModal()
-
+    
     let localClickTotal = JSON.parse(localStorage.getItem('localClickTotal'))
     localClickTotal.push(total)
     localStorage.setItem('localClickTotal', JSON.stringify(localClickTotal))
 
     let scoreArr = JSON.parse(localStorage.getItem('localClickTotal'))
     let lowestScore = Math.min(...scoreArr)
-    document.querySelector('.score').innerText = `your lowest number of clicks to win: ${lowestScore}`
+    document.querySelector('.score').innerText = lowestScore
 }
 
 function playAgain() {
   let modal = document.getElementById("myModal");
   modal.style.display = "none"
-  document.querySelector('.answer').innerText = ""
+  answer.innerText = ""
   window.location = window.location
 }
