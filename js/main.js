@@ -1,9 +1,12 @@
+
+// Randomizer
 let total = 0 //Click counter
 let randomAnswer = Math.floor(Math.random() * 200) //Random number not used yet
 const sectionList = document.querySelectorAll('section')
 
 sectionList[randomAnswer].classList.replace('wrong', 'answer')
 
+// Event listeners
 document.querySelectorAll('.wrong').forEach(item =>
     item.addEventListener('click', checkWrong)
     )
@@ -11,6 +14,7 @@ document.querySelector('#fakeClick').addEventListener('click', checkThought)
 document.querySelector('.answer').addEventListener('click', checkAnswer)
 document.querySelector('span').addEventListener('click', playAgain)
 
+// Game logic
 function checkWrong() {
     const replies = [
       "not quite",
