@@ -1,3 +1,5 @@
+// New state score saved to localStorage
+localStorage.setItem('sessionClickTotal', [])
 
 // Randomizer
 let total = 0 //Click counter
