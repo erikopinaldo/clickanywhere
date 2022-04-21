@@ -1,6 +1,6 @@
 // // New state score saved to localStorage
 
-if (localStorage.getItem('localClickTotal')) {
+if (!localStorage.getItem('localClickTotal')) {
   localStorage.setItem('localClickTotal', JSON.stringify([]))
 }
 
