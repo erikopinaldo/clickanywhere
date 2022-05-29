@@ -70,9 +70,13 @@ section {
   height: 10vh;
 }
 
-.fakeClick {
+.centerText {
   width: 10%;
   text-align: center;
+}
+
+.unclickable {
+  pointer-events: none;
 }
 
 @media (min-width: 1969px) {
