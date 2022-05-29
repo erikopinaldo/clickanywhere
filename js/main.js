@@ -6,15 +6,13 @@ if (!localStorage.getItem('localClickTotal')) {
 // Create array containing all playable sections
 const sectionList = document.querySelectorAll('section')
 
-// Give each section a numbered id
+// Give each section a numbered id and an event listener
 let count = 1
 for (let i = 0; i < sectionList.length; i++) {
   sectionList[i].setAttribute('id', count.toString())
+  sectionList[i].addEventListener('click', makeGuess)
   count++
 }
-
-// Add event listeners to all playable sections
-sectionList.forEach(item => item.addEventListener('click', checkSection))
 
 // Add event listener to hidden end-game modal
 document.querySelector('button').addEventListener('click', playAgain)
@@ -47,7 +45,7 @@ class Game {
   scoreIncrement() {
     return this.total += 1
   }
-  checkWrong() {
+  showWrongReply() {
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
 
     this.scoreIncrement()
@@ -76,13 +74,13 @@ class Game {
   }
   getGuessResult(guess) {
     if (guess === this.#randomAnswer) return this.showAnswerModal()
-    else return this.checkWrong()
+    else return this.showWrongReply()
   }
 }
 
 let game = new Game()
 
-function checkSection(selection) {
+function makeGuess(selection) {
   let guess = Number(selection.target.id)
   console.log("guess: " + guess)
 
