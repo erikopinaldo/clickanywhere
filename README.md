@@ -9,4 +9,3 @@ You can find the game here: https://clickanywhere.netlify.app/
 * Make site responsive (research display grid as an option)
 * Instructions modal
 * Styling?
-* Test
