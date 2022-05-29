@@ -6,15 +6,13 @@ if (!localStorage.getItem('localClickTotal')) {
 // Create array containing all playable sections
 const sectionList = document.querySelectorAll('section')
 
-// Give each section a numbered id
+// Give each section a numbered id and an event listener
 let count = 1
 for (let i = 0; i < sectionList.length; i++) {
   sectionList[i].setAttribute('id', count.toString())
+  sectionList[i].addEventListener('click', checkSection)
   count++
 }
-
-// Add event listeners to all playable sections
-sectionList.forEach(item => item.addEventListener('click', checkSection))
 
 // Add event listener to hidden end-game modal
 document.querySelector('button').addEventListener('click', playAgain)
