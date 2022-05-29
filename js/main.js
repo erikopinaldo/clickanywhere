@@ -51,12 +51,10 @@ class Game {
     // Get a random number, so that we can choose a wrongReply to show to the user at random
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
     results.innerText = this.wrongReplies[randomNumber]
-    this.scoreIncrement()
     this.clickCounter.innerText = this.total
   }
   showAnswerModal() {
     results.innerText = "oKKKK"
-    this.scoreIncrement()
     this.modalCurrentScore.innerText = this.total
     
     // Hide the clickCounter and wrongReplies text on the main page because the modal should be the focus
@@ -91,6 +89,7 @@ function makeGuess(selection) {
   let guess = Number(selection.target.id)
   console.log("guess: " + guess)
 
+  game.scoreIncrement()
   game.getGuessResult(guess)
 }
 
