@@ -10,7 +10,7 @@ const sectionList = document.querySelectorAll('section')
 let count = 1
 for (let i = 0; i < sectionList.length; i++) {
   sectionList[i].setAttribute('id', count.toString())
-  sectionList[i].addEventListener('click', checkSection)
+  sectionList[i].addEventListener('click', makeGuess)
   count++
 }
 
@@ -80,7 +80,7 @@ class Game {
 
 let game = new Game()
 
-function checkSection(selection) {
+function makeGuess(selection) {
   let guess = Number(selection.target.id)
   console.log("guess: " + guess)
 
