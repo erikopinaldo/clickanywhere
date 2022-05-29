@@ -1,5 +1,3 @@
-// Push to staging test
-
 // New state (i.e. first time ever playing) score saved to localStorage
 if (!localStorage.getItem('localClickTotal')) {
   localStorage.setItem('localClickTotal', JSON.stringify([]))
