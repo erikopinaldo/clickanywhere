@@ -68,8 +68,7 @@ class Game {
     scoreHistoryArray.push(this.total)
     localStorage.setItem('scoreHistoryArray', JSON.stringify(scoreHistoryArray))
 
-    let scoreArr = JSON.parse(localStorage.getItem('scoreHistoryArray'))
-    let lowestScore = Math.min(...scoreArr)
+    let lowestScore = Math.min(...scoreHistoryArray)
     document.querySelector('.score').innerText = lowestScore
   }
   getGuessResult(guess) {
