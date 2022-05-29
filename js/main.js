@@ -20,7 +20,9 @@ document.querySelector('button').addEventListener('click', playAgain)
 // This constructor is used to load up a new Game object for each new session
 class Game {
   // The randomAnswer is a private property, and represents the ID of the correct section
-  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1)) 
+  // correctSection is also private and represents the section element with the ID matching the randomAnswer
+  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1))
+  #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
     this.total = 0
     this.clickCounter = document.querySelector('.clickCounter')
@@ -53,15 +55,17 @@ class Game {
     results.innerText = this.wrongReplies[randomNumber]
     this.clickCounter.innerText = this.total
   }
-  showAnswerModal() {
+  showAnswer() {
+    // Display the win-condition text in both the center heading, and inside the correct section itself
     results.innerText = "oKKKK"
+    this.#correctSection.innerText = "nice"
     this.modalCurrentScore.innerText = this.total
     
     // Hide the clickCounter and wrongReplies text on the main page because the modal should be the focus
     this.clickLabel.classList.add('hidden')
     this.clickCounter.classList.add('hidden')
     
-    // Before actually showing the modal, get getScoreHistory reveals your best score
+    // Before showing the end-game modal, getScoreHistory reveals your best score
     this.getScoreHistory()
     this.modal.showModal()
   }
@@ -76,7 +80,7 @@ class Game {
     document.querySelector('.score').innerText = lowestScore
   }
   getGuessResult(guess) {
-    if (guess === this.#randomAnswer) return this.showAnswerModal()
+    if (guess === this.#randomAnswer) return this.showAnswer()
     else return this.showWrongReply()
   }
 }
