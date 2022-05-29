@@ -81,7 +81,6 @@ class Game {
 }
 
 let game = new Game()
-game.hint()
 
 function checkSection(selection) {
   let guess = Number(selection.target.id)
