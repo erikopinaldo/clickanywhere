@@ -19,12 +19,9 @@ sectionList.forEach(item => item.addEventListener('click', checkSection))
 // Add event listener to hidden end-game modal
 document.querySelector('button').addEventListener('click', playAgain)
 
-// Random number generator to use as answer key
-let randomAnswer = Math.floor(Math.random() * (sectionList.length + 1)) //Random number not used yet
-console.log(randomAnswer)
-
 // This constructor is used to load up a new Game object for each new session
 class Game {
+  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1)) //Random number not used yet
   constructor() {
     this.total = 0
     this.clickCounter = document.querySelector('.clickCounter')
@@ -43,6 +40,9 @@ class Game {
       "imagine though?",
       "💀😂"
       ]
+  }
+  hint() {
+    console.log("hint: " + this.#randomAnswer)
   }
   scoreIncrement() {
     return this.total += 1
@@ -74,16 +74,20 @@ class Game {
     this.getScoreHistory()
     this.modal.showModal()
   }
+  choiceResult(guess) {
+    if (guess === this.#randomAnswer) return this.showAnswerModal()
+    else return this.checkWrong()
+  }
 }
 
 let game = new Game()
+game.hint()
 
 function checkSection(selection) {
   let guess = Number(selection.target.id)
-  console.log(guess)
+  console.log("guess: " + guess)
 
-  if (guess === randomAnswer) return game.showAnswerModal()
-  else return game.checkWrong()
+  game.choiceResult(guess)
 }
 
 function playAgain() { 
