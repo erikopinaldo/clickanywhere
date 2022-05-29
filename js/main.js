@@ -19,7 +19,8 @@ document.querySelector('button').addEventListener('click', playAgain)
 
 // This constructor is used to load up a new Game object for each new session
 class Game {
-  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1)) //Random number not used yet
+  // The randomAnswer is a private property, and represents the ID of the correct section
+  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1)) 
   constructor() {
     this.total = 0
     this.clickCounter = document.querySelector('.clickCounter')
@@ -39,6 +40,7 @@ class Game {
       "💀😂"
       ]
   }
+  // Mostly for troubleshooting purposes. Reveal the id of the correct section
   hint() {
     console.log("hint: " + this.#randomAnswer)
   }
@@ -46,28 +48,32 @@ class Game {
     return this.total += 1
   }
   showWrongReply() {
+    // Get a random number, so that we can choose a wrongReply to show to the user at random
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
-
-    this.scoreIncrement()
     results.innerText = this.wrongReplies[randomNumber]
+    this.scoreIncrement()
     this.clickCounter.innerText = this.total
   }
   showAnswerModal() {
-    this.scoreIncrement()
-    
     results.innerText = "oKKKK"
-
+    this.scoreIncrement()
     this.modalCurrentScore.innerText = this.total
+    
+    // Hide the clickCounter and wrongReplies text on the main page because the modal should be the focus
     this.clickLabel.classList.add('hidden')
     this.clickCounter.classList.add('hidden')
+    
+    // Before actually showing the modal, get getScoreHistory reveals your best score
     this.getScoreHistory()
     this.modal.showModal()
   }
   getScoreHistory() {
+    // Push score for current session into your score history array
     let scoreHistoryArray = JSON.parse(localStorage.getItem('scoreHistoryArray'))
     scoreHistoryArray.push(this.total)
     localStorage.setItem('scoreHistoryArray', JSON.stringify(scoreHistoryArray))
 
+    // Look at the updated score history array, and display the lowest score
     let lowestScore = Math.min(...scoreHistoryArray)
     document.querySelector('.score').innerText = lowestScore
   }
@@ -79,13 +85,16 @@ class Game {
 
 let game = new Game()
 
+// makeGuess is called when you click a section on the page
 function makeGuess(selection) {
+  // selection.target.id is a string, so we need to change it to a number
   let guess = Number(selection.target.id)
   console.log("guess: " + guess)
 
   game.getGuessResult(guess)
 }
 
+// Refresh the page to start a new session
 function playAgain() { 
   game.modal.style.display = "none"
   window.location = window.location
