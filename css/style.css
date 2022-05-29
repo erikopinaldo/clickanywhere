@@ -70,20 +70,20 @@ section {
   height: 10vh;
 }
 
-#fakeClick {
+.fakeClick {
   width: 10%;
   text-align: center;
 }
 
 @media (min-width: 1969px) {
-  #fakeClick h1 {
+  .fakeClick h1 {
     font-size: 25px;
     margin-bottom: 10px;
   }
 }
 
 @media (min-width: 1596px) and (max-width: 1968px) {
-  #fakeClick h1 {
+  .fakeClick h1 {
     font-size: 20px;
     margin-bottom: 10px;
   }

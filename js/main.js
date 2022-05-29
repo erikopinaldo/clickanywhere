@@ -1,26 +1,34 @@
-let total = 0 //Click counter
-let randomAnswer = Math.floor(Math.random() * 200) //Random number not used yet
+// New state (i.e. first time ever playing) score saved to localStorage
+if (!localStorage.getItem('localClickTotal')) {
+  localStorage.setItem('localClickTotal', JSON.stringify([]))
+}
+
+// Create array containing all playable sections
 const sectionList = document.querySelectorAll('section')
 
-sectionList[randomAnswer].classList.replace('wrong', 'answer')
+// Give each section a numbered id
+let count = 1
+for (let i = 0; i < sectionList.length; i++) {
+  sectionList[i].setAttribute('id', count.toString())
+  count++
+}
 
-document.querySelectorAll('.wrong').forEach(item =>
-    item.addEventListener('click', checkWrong)
-    )
-document.querySelector('#fakeClick').addEventListener('click', checkThought)
-document.querySelector('.answer').addEventListener('click', checkAnswer)
+// Add event listeners to all playable sections
+sectionList.forEach(item => item.addEventListener('click', checkSection))
+
+// Add event listener to hidden end-game modal
 document.querySelector('button').addEventListener('click', playAgain)
 
-//Response to clicks.
-
-let results = document.querySelector('#results')
-let answer = document.querySelector('.answer')
-let clickCounter = document.querySelector('.clickCounter')
-let clickCounterTwo = document.querySelector('.clickCounterTwo')
-
-//Response to normal wrong clicks.
-function checkWrong() {
-    const replies = [
+// This constructor is used to load up a new Game object for each new session
+class Game {
+  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1)) //Random number not used yet
+  constructor() {
+    this.total = 0
+    this.clickCounter = document.querySelector('.clickCounter')
+    this.modal = document.getElementById("myModal");
+    this.modalCurrentScore = document.querySelector('.modalCurrentScore')
+    this.clickLabel = document.querySelector('#clickLabel')
+    this.wrongReplies = [
       "not quite",
       "really?",
       "no not there",
@@ -31,38 +39,57 @@ function checkWrong() {
       "no",
       "imagine though?",
       "💀😂"
-    ]
-    let randomNumber = Math.floor(Math.random() * replies.length);
-  
-    results.innerText = replies[randomNumber]
-    answer.innerText = ""
-    total = total + 1
-    clickCounter.innerText = total
-    clickCounterTwo.innerText = total
-}
+      ]
+  }
+  hint() {
+    console.log("hint: " + this.#randomAnswer)
+  }
+  scoreIncrement() {
+    return this.total += 1
+  }
+  checkWrong() {
+    let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
 
-function checkThought() {
-    results.innerText = "u really thought"
-    answer.innerText = ""
-    clickCounter.innerText = total
-    clickCounterTwo.innerText = total
-}
-
-function checkAnswer() {
-    let modal = document.getElementById("myModal");
-    results.innerText = "oKKKK"
-    answer.innerText = "ur sicccc"
-    total = total + 1
-    clickCounter.innerText = total
-    document.querySelector('#clickLabel').classList.add('hidden')
-    clickCounterTwo.classList.add('hidden')
-    modal.showModal()
+    this.scoreIncrement()
+    results.innerText = this.wrongReplies[randomNumber]
+    this.clickCounter.innerText = this.total
+  }
+  showAnswerModal() {
+    this.scoreIncrement()
     
+    results.innerText = "oKKKK"
+
+    this.modalCurrentScore.innerText = this.total
+    this.clickLabel.classList.add('hidden')
+    this.clickCounter.classList.add('hidden')
+    this.getScoreHistory()
+    this.modal.showModal()
+  }
+  getScoreHistory() {
+    let localClickTotal = JSON.parse(localStorage.getItem('localClickTotal'))
+    localClickTotal.push(this.total)
+    localStorage.setItem('localClickTotal', JSON.stringify(localClickTotal))
+
+    let scoreArr = JSON.parse(localStorage.getItem('localClickTotal'))
+    let lowestScore = Math.min(...scoreArr)
+    document.querySelector('.score').innerText = lowestScore
+  }
+  getGuessResult(guess) {
+    if (guess === this.#randomAnswer) return this.showAnswerModal()
+    else return this.checkWrong()
+  }
 }
 
-function playAgain() {
-  let modal = document.getElementById("myModal");
-  modal.style.display = "none"
-  answer.innerText = ""
+let game = new Game()
+
+function checkSection(selection) {
+  let guess = Number(selection.target.id)
+  console.log("guess: " + guess)
+
+  game.getGuessResult(guess)
+}
+
+function playAgain() { 
+  game.modal.style.display = "none"
   window.location = window.location
 }
