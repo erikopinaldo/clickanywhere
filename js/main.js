@@ -1,6 +1,6 @@
 // New state (i.e. first time ever playing) score saved to localStorage
-if (!localStorage.getItem('localClickTotal')) {
-  localStorage.setItem('localClickTotal', JSON.stringify([]))
+if (!localStorage.getItem('scoreHistoryArray')) {
+  localStorage.setItem('scoreHistoryArray', JSON.stringify([]))
 }
 
 // Create array containing all playable sections
@@ -64,11 +64,11 @@ class Game {
     this.modal.showModal()
   }
   getScoreHistory() {
-    let localClickTotal = JSON.parse(localStorage.getItem('localClickTotal'))
-    localClickTotal.push(this.total)
-    localStorage.setItem('localClickTotal', JSON.stringify(localClickTotal))
+    let scoreHistoryArray = JSON.parse(localStorage.getItem('scoreHistoryArray'))
+    scoreHistoryArray.push(this.total)
+    localStorage.setItem('scoreHistoryArray', JSON.stringify(scoreHistoryArray))
 
-    let scoreArr = JSON.parse(localStorage.getItem('localClickTotal'))
+    let scoreArr = JSON.parse(localStorage.getItem('scoreHistoryArray'))
     let lowestScore = Math.min(...scoreArr)
     document.querySelector('.score').innerText = lowestScore
   }
