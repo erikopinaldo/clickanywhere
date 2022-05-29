@@ -45,7 +45,7 @@ class Game {
   scoreIncrement() {
     return this.total += 1
   }
-  checkWrong() {
+  showWrongReply() {
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
 
     this.scoreIncrement()
@@ -74,7 +74,7 @@ class Game {
   }
   getGuessResult(guess) {
     if (guess === this.#randomAnswer) return this.showAnswerModal()
-    else return this.checkWrong()
+    else return this.showWrongReply()
   }
 }
 
