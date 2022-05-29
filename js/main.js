@@ -21,7 +21,7 @@ document.querySelector('button').addEventListener('click', playAgain)
 class Game {
   // The randomAnswer is a private property, and represents the ID of the correct section
   // correctSection is also private and represents the section element with the ID matching the randomAnswer
-  #randomAnswer = Math.floor(Math.random() * (sectionList.length + 1))
+  #randomAnswer = Math.floor((Math.random() * sectionList.length) + 1)
   #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
     this.total = 0
