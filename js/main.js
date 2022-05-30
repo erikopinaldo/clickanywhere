@@ -68,11 +68,11 @@ class Game {
     this.clickLabel.classList.add('hidden')
     this.mainClickCounter.classList.add('hidden')
     
-    // Before showing the end-game modal, getScoreHistory reveals your best score
-    this.getScoreHistory()
+    // Before showing the end-game modal, updateScoreHistory reveals your best score
+    this.updateScoreHistory()
     this.modal.showModal()
   }
-  getScoreHistory() {
+  updateScoreHistory() {
     // Push score for current session into your score history array
     this.scoreHistoryArray.push(this.total)
     localStorage.setItem('scoreHistoryArray', JSON.stringify(this.scoreHistoryArray))
