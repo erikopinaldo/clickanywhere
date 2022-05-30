@@ -17,6 +17,11 @@ for (let i = 0; i < sectionList.length; i++) {
 // Add event listener to hidden end-game modal
 document.querySelector('button').addEventListener('click', playAgain)
 
+// Add event listener for keypresses (only used to trigger hint())
+window.addEventListener('keydown', keyPress => {
+  if (keyPress.key === '`') game.hint()
+});
+
 // This constructor is used to load up a new Game object for each new session
 class Game {
   // The randomAnswer is a private property, and represents the ID of the correct section
