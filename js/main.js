@@ -31,7 +31,6 @@ class Game {
     this.clickCounterList = document.querySelectorAll('.clickCounter')
     this.mainClickCounter = document.getElementById('mainClickCounter')
     this.modal = document.getElementById("myModal");
-    this.modalCurrentScore = document.querySelector('.modalCurrentScore')
     this.wrongReplies = [
       "not quite",
       "really?",
