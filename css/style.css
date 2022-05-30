@@ -117,8 +117,12 @@ h2, h3 {
   box-shadow: 0 0 1em rgb(0 0 0 / .3);
 }
 
-.close {
+.currentScoreWrapper, .bestScoreWrapper {
   margin: 10px;
+}
+
+.close {
+  /* margin: 10px; */
   padding: 5px;
   border: none;
   outline: none;
