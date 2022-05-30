@@ -33,15 +33,15 @@ class Game {
     this.modal = document.getElementById("myModal");
     this.wrongReplies = [
       "not quite",
-      "really?",
+      "try another",
       "no not there",
-      "getting close... jk",
-      "git gud",
-      "what're u trying",
-      "hello?",
+      "that's not it",
+      "keep looking",
+      "try again",
+      "look harder",
       "no",
-      "imagine though?",
-      "💀😂"
+      "nahh",
+      "nope"
       ]
   }
   // Mostly for troubleshooting purposes. Reveal the id of the correct section
