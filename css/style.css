@@ -80,14 +80,14 @@ section {
 }
 
 @media (min-width: 1969px) {
-  .fakeClick h1 {
+  .centerText h1 {
     font-size: 25px;
     margin-bottom: 10px;
   }
 }
 
 @media (min-width: 1596px) and (max-width: 1968px) {
-  .fakeClick h1 {
+  .centerText h1 {
     font-size: 20px;
     margin-bottom: 10px;
   }
