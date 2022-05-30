@@ -142,24 +142,25 @@ h2, h3 {
 }
 
 .github {
-  height: 30px;
   position: fixed;
   float: right; /* go to the right */
   right: 20px;
   top: calc(100% - 30px - 16px);
-  display: flex;
-  align-items: center;
 }
 
-.github > * {
+.github a {
+  height: 30px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+a * {
   padding: 3px;
 }
 
-.github img {
-  height: 70%;
-}
-
-a {
-  text-decoration: none;
-  color: white;
+img {
+  max-height: 100%;
 }
