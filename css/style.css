@@ -141,15 +141,21 @@ h2, h3 {
   display: none;
 }
 
-span {
+.github {
   height: 30px;
   position: fixed;
   float: right; /* go to the right */
   right: 20px;
   top: calc(100% - 30px - 16px);
+  display: flex;
+  align-items: center;
 }
 
-span img {
+.github > * {
+  padding: 3px;
+}
+
+.github img {
   height: 70%;
 }
 
