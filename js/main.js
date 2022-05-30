@@ -27,7 +27,8 @@ class Game {
     this.total = 0
     this.results = document.getElementById('results')
     this.clickLabel = document.getElementById('clickLabel')
-    this.clickCounter = document.querySelector('.clickCounter')
+    this.clickCounterList = document.querySelectorAll('.clickCounter')
+    this.mainClickCounter = document.getElementById('mainClickCounter')
     this.modal = document.getElementById("myModal");
     this.modalCurrentScore = document.querySelector('.modalCurrentScore')
     this.wrongReplies = [
@@ -47,24 +48,24 @@ class Game {
   hint() {
     console.log("hint: " + this.#randomAnswer)
   }
+  // Increment the number of clicks that you made, and update both the main page clickCounter and the hidden modal clickCounter
   scoreIncrement() {
-    return this.total += 1
+    this.total += 1
+    this.clickCounterList.forEach(clickCounter => clickCounter.innerText = this.total)
   }
   showWrongReply() {
     // Get a random number, so that we can choose a wrongReply to show to the user at random
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
     this.results.innerText = this.wrongReplies[randomNumber]
-    this.clickCounter.innerText = this.total
   }
   showAnswer() {
     // Display the win-condition text in both the center heading, and inside the correct section itself
     this.results.innerText = "oKKKK"
     this.#correctSection.innerText = "nice"
-    this.modalCurrentScore.innerText = this.total
     
-    // Hide the clickCounter and wrongReplies text on the main page because the modal should be the focus
+    // Hide the mainClickCounter and wrongReplies text on the main page because the modal should be the focus
     this.clickLabel.classList.add('hidden')
-    this.clickCounter.classList.add('hidden')
+    this.mainClickCounter.classList.add('hidden')
     
     // Before showing the end-game modal, getScoreHistory reveals your best score
     this.getScoreHistory()
