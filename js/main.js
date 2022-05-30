@@ -60,7 +60,7 @@ class Game {
   }
   showAnswer() {
     // Display the win-condition text in both the center heading, and inside the correct section itself
-    this.#correctSection.style.backgroundColor = "green"
+    this.#correctSection.style.backgroundColor = "#4BB543" 
     
     // Hide the center text on the main page because the modal should be the focus
     this.results.classList.add('hidden')
