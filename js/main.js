@@ -60,10 +60,10 @@ class Game {
   }
   showAnswer() {
     // Display the win-condition text in both the center heading, and inside the correct section itself
-    this.results.innerText = "oKKKK"
     this.#correctSection.innerText = "nice"
     
     // Hide the mainClickCounter and wrongReplies text on the main page because the modal should be the focus
+    this.results.classList.add('hidden')
     this.clickLabel.classList.add('hidden')
     this.mainClickCounter.classList.add('hidden')
     
