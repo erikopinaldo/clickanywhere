@@ -47,6 +47,7 @@ class Game {
   // Mostly for troubleshooting purposes. Reveal the id of the correct section
   hint() {
     console.log("hint: " + this.#randomAnswer)
+    this.#correctSection.style.backgroundColor = 'rgba(75,181,67,0.3)' 
   }
   // Increment the number of clicks that you made, and update both the main page clickCounter and the hidden modal clickCounter
   scoreIncrement() {
@@ -60,7 +61,7 @@ class Game {
   }
   showAnswer() {
     // Display the win-condition text in both the center heading, and inside the correct section itself
-    this.#correctSection.style.backgroundColor = "#4BB543" 
+    this.#correctSection.style.backgroundColor = 'rgb(75,181,67)' 
     
     // Hide the center text on the main page because the modal should be the focus
     this.results.classList.add('hidden')
