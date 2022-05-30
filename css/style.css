@@ -116,7 +116,7 @@ h2, h3 {
 #myModal {
   text-align: center;
   border: 0;
-  box-shadow: 0 0 1em rgb(0 0 0 / .3);
+  box-shadow: 0 0 1em rgb(0 0 0 / 10);
 }
 
 .modal-content {
