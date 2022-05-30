@@ -24,6 +24,7 @@ class Game {
   #randomAnswer = Math.floor((Math.random() * sectionList.length) + 1)
   #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
+    this.scoreHistoryArray = JSON.parse(localStorage.getItem('scoreHistoryArray'))
     this.total = 0
     this.results = document.getElementById('results')
     this.clickLabel = document.getElementById('clickLabel')
@@ -73,12 +74,11 @@ class Game {
   }
   getScoreHistory() {
     // Push score for current session into your score history array
-    let scoreHistoryArray = JSON.parse(localStorage.getItem('scoreHistoryArray'))
-    scoreHistoryArray.push(this.total)
-    localStorage.setItem('scoreHistoryArray', JSON.stringify(scoreHistoryArray))
+    this.scoreHistoryArray.push(this.total)
+    localStorage.setItem('scoreHistoryArray', JSON.stringify(this.scoreHistoryArray))
 
     // Look at the updated score history array, and display the lowest score
-    let lowestScore = Math.min(...scoreHistoryArray)
+    let lowestScore = Math.min(...this.scoreHistoryArray)
     document.querySelector('.score').innerText = lowestScore
   }
   getGuessResult(guess) {
