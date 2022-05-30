@@ -117,8 +117,12 @@ h2, h3 {
   box-shadow: 0 0 1em rgb(0 0 0 / .3);
 }
 
-.currentScoreWrapper, .bestScoreWrapper {
+.modal-content {
   margin: 10px;
+}
+
+.currentScoreWrapper, .bestScoreWrapper {
+  margin-bottom: 10px;
 }
 
 .close {
