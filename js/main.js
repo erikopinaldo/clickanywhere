@@ -25,10 +25,10 @@ class Game {
   #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
     this.total = 0
+    this.clickLabel = document.getElementById('clickLabel')
     this.clickCounter = document.querySelector('.clickCounter')
     this.modal = document.getElementById("myModal");
     this.modalCurrentScore = document.querySelector('.modalCurrentScore')
-    this.clickLabel = document.getElementById('clickLabel')
     this.wrongReplies = [
       "not quite",
       "really?",
