@@ -140,3 +140,16 @@ h2, h3 {
 .hidden {
   display: none;
 }
+
+span {
+  height: 30px;
+  position: fixed;
+  float: right; /* go to the right */
+  right: 20px;
+  top: calc(100% - 30px - 16px);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
