@@ -149,6 +149,10 @@ span {
   top: calc(100% - 30px - 16px);
 }
 
+span img {
+  height: 70%;
+}
+
 a {
   text-decoration: none;
   color: white;
