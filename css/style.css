@@ -140,3 +140,26 @@ h2, h3 {
 .hidden {
   display: none;
 }
+
+.github {
+  height: 30px;
+  position: fixed;
+  float: right; /* go to the right */
+  right: 20px;
+  top: calc(100% - 30px - 16px);
+  display: flex;
+  align-items: center;
+}
+
+.github > * {
+  padding: 3px;
+}
+
+.github img {
+  height: 70%;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
