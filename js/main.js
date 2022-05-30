@@ -24,59 +24,60 @@ class Game {
   #randomAnswer = Math.floor((Math.random() * sectionList.length) + 1)
   #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
+    this.scoreHistoryArray = JSON.parse(localStorage.getItem('scoreHistoryArray'))
     this.total = 0
-    this.clickCounter = document.querySelector('.clickCounter')
-    this.modal = document.getElementById("myModal");
-    this.modalCurrentScore = document.querySelector('.modalCurrentScore')
+    this.results = document.getElementById('results')
     this.clickLabel = document.getElementById('clickLabel')
+    this.clickCounterList = document.querySelectorAll('.clickCounter')
+    this.mainClickCounter = document.getElementById('mainClickCounter')
+    this.modal = document.getElementById("myModal");
     this.wrongReplies = [
       "not quite",
-      "really?",
+      "try another",
       "no not there",
-      "getting close... jk",
-      "git gud",
-      "what're u trying",
-      "hello?",
+      "that's not it",
+      "keep looking",
+      "try again",
+      "look harder",
       "no",
-      "imagine though?",
-      "💀😂"
+      "nahh",
+      "nope"
       ]
   }
   // Mostly for troubleshooting purposes. Reveal the id of the correct section
   hint() {
     console.log("hint: " + this.#randomAnswer)
   }
+  // Increment the number of clicks that you made, and update both the main page clickCounter and the hidden modal clickCounter
   scoreIncrement() {
-    return this.total += 1
+    this.total += 1
+    this.clickCounterList.forEach(clickCounter => clickCounter.innerText = this.total)
   }
   showWrongReply() {
     // Get a random number, so that we can choose a wrongReply to show to the user at random
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
-    results.innerText = this.wrongReplies[randomNumber]
-    this.clickCounter.innerText = this.total
+    this.results.innerText = this.wrongReplies[randomNumber]
   }
   showAnswer() {
     // Display the win-condition text in both the center heading, and inside the correct section itself
-    results.innerText = "oKKKK"
-    this.#correctSection.innerText = "nice"
-    this.modalCurrentScore.innerText = this.total
+    this.#correctSection.style.backgroundColor = "green"
     
-    // Hide the clickCounter and wrongReplies text on the main page because the modal should be the focus
+    // Hide the center text on the main page because the modal should be the focus
+    this.results.classList.add('hidden')
     this.clickLabel.classList.add('hidden')
-    this.clickCounter.classList.add('hidden')
+    this.mainClickCounter.classList.add('hidden')
     
-    // Before showing the end-game modal, getScoreHistory reveals your best score
-    this.getScoreHistory()
+    // Before showing the end-game modal, updateScoreHistory reveals your best score
+    this.updateScoreHistory()
     this.modal.showModal()
   }
-  getScoreHistory() {
+  updateScoreHistory() {
     // Push score for current session into your score history array
-    let scoreHistoryArray = JSON.parse(localStorage.getItem('scoreHistoryArray'))
-    scoreHistoryArray.push(this.total)
-    localStorage.setItem('scoreHistoryArray', JSON.stringify(scoreHistoryArray))
+    this.scoreHistoryArray.push(this.total)
+    localStorage.setItem('scoreHistoryArray', JSON.stringify(this.scoreHistoryArray))
 
     // Look at the updated score history array, and display the lowest score
-    let lowestScore = Math.min(...scoreHistoryArray)
+    let lowestScore = Math.min(...this.scoreHistoryArray)
     document.querySelector('.score').innerText = lowestScore
   }
   getGuessResult(guess) {

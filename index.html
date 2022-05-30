@@ -11,10 +11,14 @@
 	<body>
 		<dialog id="myModal" class="modal">
 			<div class="modal-content">
-				<h2>current score: </h2>
-				<h3 class="modalCurrentScore">0</h3> 
-				<h2>best score:</h2>
-				<h3 class="score"></h3>
+				<div class="currentScoreWrapper">
+					<h2>current score: </h2>
+					<h3 class="clickCounter">0</h3> 
+				</div>
+				<div class="bestScoreWrapper">
+					<h2>best score:</h2>
+					<h3 class="score"></h3>
+				</div>
 				<button class="close">play again</button>
 			</div>
 	    </dialog>
@@ -111,7 +115,7 @@
 			<section class="centerText">
 				<h1 id="results" class="unclickable">click the right spot</h1>
 				<h2 id="clickLabel" class="unclickable">clicks: </h2>
-				<h3 class="clickCounter" class="unclickable">0</h3>  
+				<h3 id="mainClickCounter" class="clickCounter unclickable">0</h3>  
 			</section>
 			<section></section>
 			<section></section>
