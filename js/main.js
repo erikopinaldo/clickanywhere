@@ -28,7 +28,7 @@ class Game {
     this.clickCounter = document.querySelector('.clickCounter')
     this.modal = document.getElementById("myModal");
     this.modalCurrentScore = document.querySelector('.modalCurrentScore')
-    this.clickLabel = document.querySelector('#clickLabel')
+    this.clickLabel = document.getElementById('clickLabel')
     this.wrongReplies = [
       "not quite",
       "really?",
