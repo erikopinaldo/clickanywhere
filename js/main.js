@@ -25,6 +25,7 @@ class Game {
   #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
     this.total = 0
+    this.results = document.getElementById('results')
     this.clickLabel = document.getElementById('clickLabel')
     this.clickCounter = document.querySelector('.clickCounter')
     this.modal = document.getElementById("myModal");
@@ -52,12 +53,12 @@ class Game {
   showWrongReply() {
     // Get a random number, so that we can choose a wrongReply to show to the user at random
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
-    results.innerText = this.wrongReplies[randomNumber]
+    this.results.innerText = this.wrongReplies[randomNumber]
     this.clickCounter.innerText = this.total
   }
   showAnswer() {
     // Display the win-condition text in both the center heading, and inside the correct section itself
-    results.innerText = "oKKKK"
+    this.results.innerText = "oKKKK"
     this.#correctSection.innerText = "nice"
     this.modalCurrentScore.innerText = this.total
     
