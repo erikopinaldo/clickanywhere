@@ -1,4 +1,4 @@
-// New state (i.e. first time ever playing) score saved to localStorage
+// New state (i.e. first time ever playing) score array saved to localStorage
 if (!localStorage.getItem('scoreHistoryArray')) {
   localStorage.setItem('scoreHistoryArray', JSON.stringify([]))
 }
@@ -6,7 +6,7 @@ if (!localStorage.getItem('scoreHistoryArray')) {
 // Create array containing all playable sections
 const sectionList = document.querySelectorAll('section')
 
-// Give each section a numbered id and an event listener
+// Give each section a numbered ID and an event listener
 let count = 1
 for (let i = 0; i < sectionList.length; i++) {
   sectionList[i].setAttribute('id', count.toString())
@@ -24,8 +24,8 @@ window.addEventListener('keydown', keyPress => {
 
 // This constructor is used to load up a new Game object for each new session
 class Game {
-  // The randomAnswer is a private property, and represents the ID of the correct section
-  // correctSection is also private and represents the section element with the ID matching the randomAnswer
+  // #randomAnswer is a private property, and represents the ID of the correct section
+  // #correctSection is also private and represents the section element with the ID matching #randomAnswer
   #randomAnswer = Math.floor((Math.random() * sectionList.length) + 1)
   #correctSection = document.getElementById(`${this.#randomAnswer}`) 
   constructor() {
@@ -49,23 +49,23 @@ class Game {
       "nope"
       ]
   }
-  // Mostly for troubleshooting purposes. Reveal the id of the correct section
+  // Mostly for troubleshooting purposes. Reveal the id of the correct section in the console, as well as visually highlight the solution section
   hint() {
     console.log("hint: " + this.#randomAnswer)
     this.#correctSection.style.backgroundColor = 'rgba(75,181,67,0.3)' 
   }
-  // Increment the number of clicks that you made, and update both the main page clickCounter and the hidden modal clickCounter
+  // Increment the player's running click total, and update both the main page clickCounter and the hidden modal clickCounter text
   scoreIncrement() {
     this.total += 1
     this.clickCounterList.forEach(clickCounter => clickCounter.innerText = this.total)
   }
   showWrongReply() {
-    // Get a random number, so that we can choose a wrongReply to show to the user at random
+    // Get a random number to act as the selected index for the wrongReplies array. Display this selection in the DOM
     let randomNumber = Math.floor(Math.random() * this.wrongReplies.length)
     this.results.innerText = this.wrongReplies[randomNumber]
   }
   showAnswer() {
-    // Display the win-condition text in both the center heading, and inside the correct section itself
+    // Visually highlight the solution section after the player clicks it
     this.#correctSection.style.backgroundColor = 'rgb(75,181,67)' 
     
     // Hide the center text on the main page because the modal should be the focus
@@ -73,12 +73,12 @@ class Game {
     this.clickLabel.classList.add('hidden')
     this.mainClickCounter.classList.add('hidden')
     
-    // Before showing the end-game modal, updateScoreHistory reveals your best score
+    // Before showing the end-game modal, updateScoreHistory reveals the player's best score
     this.updateScoreHistory()
     this.modal.showModal()
   }
   updateScoreHistory() {
-    // Push score for current session into your score history array
+    // Push score for player's current session into the score history array
     this.scoreHistoryArray.push(this.total)
     localStorage.setItem('scoreHistoryArray', JSON.stringify(this.scoreHistoryArray))
 
@@ -94,9 +94,9 @@ class Game {
 
 let game = new Game()
 
-// makeGuess is called when you click a section on the page
+// makeGuess is called when the player clicks a section on the page
 function makeGuess(selection) {
-  // selection.target.id is a string, so we need to change it to a number
+  // selection.target.id is a string. We need to change it to a number so that it can be compared against the previously generated random number key
   let guess = Number(selection.target.id)
   console.log("guess: " + guess)
 
